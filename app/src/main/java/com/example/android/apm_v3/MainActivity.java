@@ -1,5 +1,9 @@
 package com.example.android.apm_v3;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -8,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,7 +23,9 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_ENABLE_BT = 1;
     private AppBarConfiguration mAppBarConfiguration;
+    private BluetoothAdapter mBluetoothAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (!mBluetoothAdapter.isEnabled())
+        {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
     }
 
     @Override

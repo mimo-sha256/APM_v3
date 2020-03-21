@@ -54,19 +54,11 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
-
-        return root;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mDeviceList.clear();
-                BluetoothAdapter.getDefaultAdapter().enable();
-
+                textView.setText("CLICKED");
                 scanSubscription = rxBleClient.scanBleDevices(
                         new ScanSettings.Builder()
                                 // .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY) // change if needed
@@ -90,5 +82,7 @@ public class HomeFragment extends Fragment {
                         );
             }
         });
+
+        return root;
     }
 }
