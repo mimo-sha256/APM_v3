@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,6 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         deviceList = root.findViewById(R.id.DeviceList);
-        deviceList = root.findViewById(R.id.DeviceList);
         scanButton = root.findViewById(R.id.ScanButton);
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
                                 throwable -> {
                                     // Handle an error here.
                                     Log.d("Error", throwable.getMessage());
+                                    Toast.makeText(context,throwable.getMessage(),Toast.LENGTH_LONG).show();
                                 }
 
                         );
