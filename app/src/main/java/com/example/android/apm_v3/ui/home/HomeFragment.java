@@ -1,7 +1,14 @@
 package com.example.android.apm_v3.ui.home;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +22,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.android.apm_v3.MainActivity;
 import com.example.android.apm_v3.R;
 import com.polidea.rxandroidble2.RxBleClient;
+import com.polidea.rxandroidble2.RxBleDevice;
 import com.polidea.rxandroidble2.scan.ScanSettings;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.reactivex.disposables.Disposable;
 
@@ -37,53 +48,54 @@ public class HomeFragment extends Fragment {
     ArrayList<String> mDeviceList = new ArrayList<>();
     Context context;
     RxBleClient rxBleClient;
+    static RxBleDevice rxBleDevice;
+    public static String macAddress;
+    static LocationManager locationManager;
+    static Disposable disposable;
+    static TextView pmValues;
+
+    final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        pmValues = root.findViewById(R.id.pmValues);
         deviceList = root.findViewById(R.id.DeviceList);
         scanButton = root.findViewById(R.id.ScanButton);
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDeviceList.clear();
-                textView.setText("CLICKED");
-                scanSubscription = rxBleClient.scanBleDevices(
-                        new ScanSettings.Builder()
-                                // .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY) // change if needed
-                                // .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES) // change if needed
-                                .build()
-                        // add filters if needed
-                )
-                        .subscribe(scanResult -> {
-                                    // Process scan result here.
-                                    //pm10Value.setText(scanResult.getBleDevice().getMacAddress() + " : " + scanResult.getBleDevice().getName() );
-                                    if (!mDeviceList.contains(scanResult.getBleDevice().getName() + "\n" + scanResult.getBleDevice().getMacAddress())) {
-                                        mDeviceList.add(scanResult.getBleDevice().getName() + "\n" + scanResult.getBleDevice().getMacAddress());
-                                    }
-                                    deviceList.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, mDeviceList));
-                                },
-                                throwable -> {
-                                    // Handle an error here.
-                                    Log.d("Error", throwable.getMessage());
-                                    Toast.makeText(context,throwable.getMessage(),Toast.LENGTH_LONG).show();
-                                }
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-                        );
-            }
-        });
+        /*if(getArguments() != null) {
+
+            macAddress = getArguments().getString("macAddress");
+        }*/
+        if (macAddress != null && rxBleDevice == null) {
+            rxBleDevice = rxBleClient.getBleDevice(macAddress);
+            disposable = rxBleDevice.establishConnection(false)
+                    .flatMap(rxBleConnection -> rxBleConnection.setupNotification(characteristicUUID))
+                    .doOnNext(notificationObservable -> {
+                        // Notification has been set up
+                    })
+                    .flatMap(notificationObservable -> notificationObservable) // <-- Notification has been set up, now observe value changes.
+                    .subscribe(
+                            bytes -> {
+                                // Given characteristic has been changes, here is the value.
+                                setValues(new String(bytes));
+                                Log.i("Readings", new String(bytes));
+                            },
+                            throwable -> {
+                                // Handle an error here.
+                            }
+                    );
+        }
 
         return root;
+    }
+
+    public void setValues(String values) {
+        pmValues.setText(values);
     }
 }
