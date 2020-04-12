@@ -26,6 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.polidea.rxandroidble2.RxBleClient;
 import com.polidea.rxandroidble2.scan.ScanSettings;
+import com.tomerrosenfeld.customanalogclockview.CustomAnalogClock;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -68,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
         rxBleClient = RxBleClient.create(context);
         setSupportActionBar(toolbar);
+        CustomAnalogClock customAnalogClock = (CustomAnalogClock) findViewById(R.id.analog_clock);
+        customAnalogClock.setAutoUpdate(true);
+        customAnalogClock.setScale(0.5f);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
