@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,9 +54,12 @@ public class HomeFragment extends Fragment {
     static LocationManager locationManager;
     static Disposable disposable;
     static TextView pmValues;
+    static LocationListener locationListener;
+    static Location myLocation;
 
     final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 
+    @SuppressLint("MissingPermission")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -67,7 +71,32 @@ public class HomeFragment extends Fragment {
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                myLocation = location;
+            }
 
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                2000,
+                10,
+                locationListener);
         /*if(getArguments() != null) {
 
             macAddress = getArguments().getString("macAddress");
@@ -97,5 +126,8 @@ public class HomeFragment extends Fragment {
 
     public void setValues(String values) {
         pmValues.setText(values);
+            /*@SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Log.i("Location", location.getLatitude() + "  " + location.getLongitude());*/
+            Log.i("Location",myLocation.getLatitude() + " " + myLocation.getLongitude());
     }
 }
