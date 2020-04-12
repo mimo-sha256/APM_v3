@@ -87,6 +87,21 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                2000,
+                10,
+                locationListener);
+
         maskSpinner = root.findViewById(R.id.maskSpinner);
         String[] maskTypes = {};
 
@@ -97,21 +112,12 @@ public class HomeFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
             }
-
             @Override
-            public void onProviderDisabled(String s) {
-
-            }
-        };
-
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                2000,
-                10,
-                locationListener);
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
         /*if(getArguments() != null) {
 
             macAddress = getArguments().getString("macAddress");
