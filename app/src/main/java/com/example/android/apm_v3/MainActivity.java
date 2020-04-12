@@ -69,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
         rxBleClient = RxBleClient.create(context);
         setSupportActionBar(toolbar);
-        CustomAnalogClock customAnalogClock = (CustomAnalogClock) findViewById(R.id.analog_clock);
-        customAnalogClock.setAutoUpdate(true);
-        customAnalogClock.setScale(0.5f);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

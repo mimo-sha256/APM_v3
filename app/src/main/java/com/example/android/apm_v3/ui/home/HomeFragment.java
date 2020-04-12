@@ -34,6 +34,7 @@ import com.example.android.apm_v3.R;
 import com.polidea.rxandroidble2.RxBleClient;
 import com.polidea.rxandroidble2.RxBleDevice;
 import com.polidea.rxandroidble2.scan.ScanSettings;
+import com.tomerrosenfeld.customanalogclockview.CustomAnalogClock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
     static Disposable disposable;
     static TextView pmValues;
     static Spinner maskSpinner;
+    static CustomAnalogClock customAnalogClock;
 
     final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 
@@ -70,6 +72,9 @@ public class HomeFragment extends Fragment {
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        customAnalogClock = root.findViewById(R.id.analog_clock);
+        customAnalogClock.setAutoUpdate(true);
+        customAnalogClock.setScale(0.5f);
 
         maskSpinner = root.findViewById(R.id.maskSpinner);
         String[] maskTypes = {};
