@@ -14,9 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,7 @@ public class HomeFragment extends Fragment {
     static LocationManager locationManager;
     static Disposable disposable;
     static TextView pmValues;
+    static Spinner maskSpinner;
 
     final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 
@@ -68,6 +71,22 @@ public class HomeFragment extends Fragment {
         rxBleClient = RxBleClient.create(context);
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+        maskSpinner = root.findViewById(R.id.maskSpinner);
+        String[] maskTypes = {};
+
+        ArrayAdapter<String> maskAdapter = new ArrayAdapter<String>(context,R.layout.spinner_mask, R.id.maskSpinner, maskTypes);
+
+        maskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         /*if(getArguments() != null) {
 
             macAddress = getArguments().getString("macAddress");
