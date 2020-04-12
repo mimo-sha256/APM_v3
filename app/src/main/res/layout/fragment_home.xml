@@ -5,7 +5,7 @@
     android:id="@+id/home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="@drawable/ic_city2_1"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -17,7 +17,54 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263" />
+
+
+    <Spinner
+        android:id="@+id/maskSpinner"
+        android:layout_width="174dp"
+        android:layout_height="30dp"
+        android:background="@drawable/spinner_rect"
+        android:entries="@array/maskArray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.707" />
+
+    <Spinner
+        android:id="@+id/transportSpinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="44dp"
+        android:entries="@array/transportArray"
+        android:background="@drawable/spinner_rect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.708" />
+
+    <FrameLayout
+        android:id="@+id/home_card"
+        android:layout_width="371dp"
+        android:layout_height="346dp"
+        android:background="@drawable/homecard"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09">
+
+        <AnalogClock
+            android:id="@+id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="67dp"
+            android:layout_marginLeft="280dp"
+            android:layout_marginTop="10dp" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
