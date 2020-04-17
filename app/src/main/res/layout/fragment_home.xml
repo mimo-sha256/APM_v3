@@ -10,7 +10,44 @@
 
 
     <TextView
-        android:id="@+id/pmValues"
+        android:id="@+id/pm10Label"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="PM 10"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+
+    <TextView
+        android:id="@+id/pm10Unit"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="µg/m³ "
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm10Value" />
+
+    <TextView
+        android:id="@+id/pm10Value"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="--"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm10Label" />
+
+    <TextView
+        android:id="@+id/AQI"
         android:layout_width="146dp"
         android:layout_height="60dp"
         android:text="----"
@@ -27,8 +64,8 @@
         android:id="@+id/maskSpinner"
         android:layout_width="174dp"
         android:layout_height="30dp"
-        android:background="@drawable/spinner_rect"
         android:entries="@array/maskArray"
+        android:background="@drawable/spinner_rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +95,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/pm25Label"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="PM 2.5"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+
+    <TextView
+        android:id="@+id/pm25Unit"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="60dp"
+        android:gravity="center"
+        android:text="µg/m³ "
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm25Value" />
+
+    <TextView
+        android:id="@+id/pm25Value"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:text="--"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm25Label" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
