@@ -5,11 +5,49 @@
     android:id="@+id/home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_city2_1"
+    android:background="@drawable/ic_city2"
     tools:context=".ui.home.HomeFragment">
 
+
     <TextView
-        android:id="@+id/pmValues"
+        android:id="@+id/pm10Label"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="PM 10"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+
+    <TextView
+        android:id="@+id/pm10Unit"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="µg/m³ "
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm10Value" />
+
+    <TextView
+        android:id="@+id/pm10Value"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="--"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm10Label" />
+
+    <TextView
+        android:id="@+id/AQI"
         android:layout_width="146dp"
         android:layout_height="60dp"
         android:text="----"
@@ -20,15 +58,14 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263" />
-
+        app:layout_constraintVertical_bias="0.375" />
 
     <Spinner
         android:id="@+id/maskSpinner"
         android:layout_width="174dp"
         android:layout_height="30dp"
-        android:background="@drawable/spinner_rect"
         android:entries="@array/maskArray"
+        android:background="@drawable/spinner_rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,24 +84,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.708" />
 
-    <FrameLayout
-        android:id="@+id/home_card"
-        android:layout_width="371dp"
-        android:layout_height="346dp"
-        android:background="@drawable/homecard"
-        android:elevation="2dp"
+    <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
+        android:id="@+id/analog_clock"
+        android:layout_width="106dp"
+        android:layout_height="105dp"
+        app:default_watchface="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09">
+        app:layout_constraintVertical_bias="0.072" />
 
-        <AnalogClock
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
-            android:layout_height="67dp"
-            android:layout_marginLeft="280dp"
-            android:layout_marginTop="10dp" />
-    </FrameLayout>
+    <TextView
+        android:id="@+id/pm25Label"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="PM 2.5"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+
+    <TextView
+        android:id="@+id/pm25Unit"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="60dp"
+        android:gravity="center"
+        android:text="µg/m³ "
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm25Value" />
+
+    <TextView
+        android:id="@+id/pm25Value"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:text="--"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm25Label" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
