@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "957283393155",
+    "firebase_url": "https://awaire-59c24.firebaseio.com",
+    "project_id": "awaire-59c24",
+    "storage_bucket": "awaire-59c24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957283393155:android:d6cfd2b1eb2176115bc5b6",
+        "android_client_info": {
+          "package_name": "com.example.android.apm_v3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957283393155-4v36th0g2pd7tu4grcf0qkamkfmoasvu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.apm_v3",
+            "certificate_hash": "8b055fa0e42ace9f68f1b815699735150d9873ae"
+          }
+        },
+        {
+          "client_id": "957283393155-ggvgc61rule9bba03r0tf0hiq05cibjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcRiLsWnLsbfuLADf_16zanrQsmzBQNAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957283393155-ggvgc61rule9bba03r0tf0hiq05cibjc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
