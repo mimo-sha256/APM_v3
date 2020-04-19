@@ -219,7 +219,7 @@ public class HomeFragment extends Fragment {
     private void sendToDB(double pm25, double pm10, double latitude, double longitude) {
         String currentDateTime = dateFormat.format(new Date());
         Map<String, Object> apData = new HashMap<>();
-        apData.put("PM2.5", pm25);
+        apData.put("PM25", pm25);
         apData.put("PM10", pm10);
         apData.put("Latitude", latitude);
         apData.put("Longitude", longitude);
