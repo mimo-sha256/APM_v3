@@ -61,10 +61,12 @@
 
     <Spinner
         android:id="@+id/maskSpinner"
-        android:layout_width="174dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:entries="@array/maskArray"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="17dp"
         android:background="@drawable/spinner_rect"
+        android:entries="@array/maskArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,13 +77,13 @@
         android:id="@+id/transportSpinner"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="44dp"
-        android:entries="@array/transportArray"
+        android:layout_marginEnd="47dp"
         android:background="@drawable/spinner_rect"
+        android:entries="@array/transportArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708" />
+        app:layout_constraintVertical_bias="0.707" />
 
     <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
         android:id="@+id/analog_clock"
