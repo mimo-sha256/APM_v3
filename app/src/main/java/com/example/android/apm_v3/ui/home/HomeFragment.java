@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class HomeFragment extends Fragment {
     static LocationManager locationManager;
     static Disposable disposable;
     static TextView AQI;
+    static LinearLayout pmCloud;
     static TextView pm25Value;
     static TextView pm10Value;
     static TextView pmValues;
@@ -86,6 +88,7 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         AQI = root.findViewById(R.id.AQI);
+        pmCloud = root.findViewById(R.id.pmCloud);
         pm25Value = root.findViewById(R.id.pm25Value);
         pm10Value = root.findViewById(R.id.pm10Value);
         deviceList = root.findViewById(R.id.DeviceList);
@@ -159,7 +162,7 @@ public class HomeFragment extends Fragment {
 
         modeOfTransportAdapter = new ArrayAdapter<String>(context, R.layout.spinner_mask, R.id.transportSpinner, transportTypes);
 
-        //maskSpinner.setAdapter(maskAdapter);
+        //modeOfTransportSpinner.setAdapter(modeOfTransportAdapter);
 
         modeOfTransportSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -301,26 +304,38 @@ public class HomeFragment extends Fragment {
         if(AQICategory == 0) {
             AQI.setText(R.string.Good);
             AQI.setTextColor(Color.parseColor("#00cc00"));
+            AQI.setBackgroundColor(0xe0ffe0);
+            pmCloud.setBackgroundResource(R.drawable.ic_good_cloud);
         }
         else if(AQICategory == 1) {
             AQI.setText("Satisfactory");
             AQI.setTextColor(Color.parseColor("#66cc00"));
+            AQI.setBackgroundColor(0xefffe0);
+            pmCloud.setBackgroundResource(R.drawable.ic_satisfactory_cloud);
         }
         else if(AQICategory == 2) {
             AQI.setText("Moderate");
             AQI.setTextColor(Color.parseColor("#ffff00"));
+            AQI.setBackgroundColor(0xffffd8);
+            pmCloud.setBackgroundResource(R.drawable.ic_moderate_cloud);
         }
         else if(AQICategory == 3) {
             AQI.setText("Poor");
             AQI.setTextColor(Color.parseColor("#ff9900"));
+            AQI.setBackgroundColor(0xffefd8);
+            pmCloud.setBackgroundResource(R.drawable.ic_poor_cloud);
         }
         else if(AQICategory == 4) {
             AQI.setText("Very Poor");
             AQI.setTextColor(Color.parseColor("#ff0000"));
+            AQI.setBackgroundColor(0xffd8d8);
+            pmCloud.setBackgroundResource(R.drawable.ic_very_poor_cloud);
         }
         else if(AQICategory == 5) {
             AQI.setText("Severe");
             AQI.setTextColor(Color.parseColor("#a52a2a"));
+            AQI.setBackgroundColor(0xf9e8e8);
+            pmCloud.setBackgroundResource(R.drawable.ic_severe_cloud);
         }
     }
 
