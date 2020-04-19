@@ -210,32 +210,8 @@ public class HomeFragment extends Fragment {
         double pm10AQI = calculatePM10_AQI(Double.parseDouble(pm10));
         double averageAQI = findAverageAQI(pm25AQI, pm10AQI);*/
         //AQI.setText(String.valueOf(averageAQI));
-/*        int AQICategory = setColors(Double.parseDouble(pm25),Double.parseDouble(pm10));
-        AQI.setText("Hello");
-        if(AQICategory == 0) {
-            AQI.setText(R.string.Good);
-            AQI.setTextColor(Color.parseColor("#00cc00"));
-        }
-        else if(AQICategory == 1) {
-            AQI.setText("Satisfactory");
-            AQI.setTextColor(Color.parseColor("#66cc00"));
-        }
-        else if(AQICategory == 2) {
-            AQI.setText("Moderate");
-            AQI.setTextColor(Color.parseColor("#ffff00"));
-        }
-        else if(AQICategory == 3) {
-            AQI.setText("Poor");
-            AQI.setTextColor(Color.parseColor("#ff9900"));
-        }
-        else if(AQICategory == 4) {
-            AQI.setText("Very Poor");
-            AQI.setTextColor(Color.parseColor("#ff0000"));
-        }
-        else if(AQICategory == 5) {
-            AQI.setText("Severe");
-            AQI.setTextColor(Color.parseColor("#a52a2a"));
-        }*/
+
+        setColors(Double.parseDouble(pm25),Double.parseDouble(pm10));
         sendToDB(Double.parseDouble(pm25), Double.parseDouble(pm10), myLocation.getLatitude(), myLocation.getLongitude());
         Log.i("Location", myLocation.getLatitude() + " " + myLocation.getLongitude() + " " + myLocation.getAccuracy());
     }
@@ -267,7 +243,7 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    public int setColors(double pm25, double pm10) {
+    public void setColors(double pm25, double pm10) {
         int pm25Category = 0;
         int pm10Category = 0;
         if(pm25>=0 && pm25<=30) {
@@ -321,7 +297,31 @@ public class HomeFragment extends Fragment {
             pm10Category = 5;
         }
 
-        return Math.max(pm25Category, pm10Category);
+        int AQICategory = Math.max(pm25Category, pm10Category);
+        if(AQICategory == 0) {
+            AQI.setText(R.string.Good);
+            AQI.setTextColor(Color.parseColor("#00cc00"));
+        }
+        else if(AQICategory == 1) {
+            AQI.setText("Satisfactory");
+            AQI.setTextColor(Color.parseColor("#66cc00"));
+        }
+        else if(AQICategory == 2) {
+            AQI.setText("Moderate");
+            AQI.setTextColor(Color.parseColor("#ffff00"));
+        }
+        else if(AQICategory == 3) {
+            AQI.setText("Poor");
+            AQI.setTextColor(Color.parseColor("#ff9900"));
+        }
+        else if(AQICategory == 4) {
+            AQI.setText("Very Poor");
+            AQI.setTextColor(Color.parseColor("#ff0000"));
+        }
+        else if(AQICategory == 5) {
+            AQI.setText("Severe");
+            AQI.setTextColor(Color.parseColor("#a52a2a"));
+        }
     }
 
     /*public void setColors(double pm25AQI, double pm10AQI, double averageAQI) {
