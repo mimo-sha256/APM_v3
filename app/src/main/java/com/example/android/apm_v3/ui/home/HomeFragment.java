@@ -2,6 +2,10 @@ package com.example.android.apm_v3.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -15,17 +19,24 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.android.apm_v3.MainActivity;
 import com.example.android.apm_v3.R;
 import com.polidea.rxandroidble2.RxBleClient;
 import com.polidea.rxandroidble2.RxBleDevice;
+import com.polidea.rxandroidble2.scan.ScanSettings;
 import com.tomerrosenfeld.customanalogclockview.CustomAnalogClock;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import io.reactivex.disposables.Disposable;
@@ -46,12 +57,16 @@ public class HomeFragment extends Fragment {
     static TextView AQI;
     static TextView pm25Value;
     static TextView pm10Value;
+    static TextView pmValues;
+    static LocationListener locationListener;
+    static Location myLocation;
     static Spinner maskSpinner;
     static ArrayAdapter<String> maskAdapter;
     static CustomAnalogClock customAnalogClock;
 
     final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 
+    @SuppressLint("MissingPermission")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -65,6 +80,33 @@ public class HomeFragment extends Fragment {
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                myLocation = location;
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                2000,
+                10,
+                locationListener);
         customAnalogClock = root.findViewById(R.id.analog_clock);
         customAnalogClock.setAutoUpdate(true);
         customAnalogClock.setScale(0.5f);
@@ -113,6 +155,7 @@ public class HomeFragment extends Fragment {
                             },
                             throwable -> {
                                 // Handle an error here.
+                                Log.e("Connection Error",throwable.getMessage());
                             }
                     );
         }
@@ -128,6 +171,7 @@ public class HomeFragment extends Fragment {
         double averageAQI = findAverageAQI(pm25AQI, pm10AQI);
         AQI.setText(String.valueOf(averageAQI));
         setColors(pm25AQI,pm10AQI,averageAQI);
+        Log.i("Location", myLocation.getLatitude() + " " + myLocation.getLongitude() + " " + myLocation.getAccuracy());
     }
 
     public void setColors(double pm25AQI, double pm10AQI, double averageAQI) {
