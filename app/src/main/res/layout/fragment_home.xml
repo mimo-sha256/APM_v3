@@ -13,8 +13,8 @@
         android:id="@+id/pm10Label"
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="108dp"
         android:gravity="center"
         android:text="PM 10"
         android:textAlignment="center"
@@ -26,7 +26,7 @@
         android:id="@+id/pm10Unit"
         android:layout_width="70dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="108dp"
         android:gravity="center"
         android:text="µg/m³ "
         android:textAlignment="center"
@@ -37,8 +37,7 @@
         android:id="@+id/pm10Value"
         android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="108dp"
         android:gravity="center"
         android:text="--"
         android:textAlignment="center"
@@ -55,17 +54,19 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintVertical_bias="0.323" />
 
     <Spinner
         android:id="@+id/maskSpinner"
-        android:layout_width="174dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:entries="@array/maskArray"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="17dp"
         android:background="@drawable/spinner_rect"
+        android:entries="@array/maskArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +77,13 @@
         android:id="@+id/transportSpinner"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="44dp"
-        android:entries="@array/transportArray"
+        android:layout_marginEnd="47dp"
         android:background="@drawable/spinner_rect"
+        android:entries="@array/transportArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708" />
+        app:layout_constraintVertical_bias="0.707" />
 
     <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
         android:id="@+id/analog_clock"
@@ -100,8 +101,8 @@
         android:id="@+id/pm25Label"
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="56dp"
         android:gravity="center"
         android:text="PM 2.5"
         android:textAlignment="center"
@@ -113,7 +114,7 @@
         android:id="@+id/pm25Unit"
         android:layout_width="70dp"
         android:layout_height="24dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="108dp"
         android:gravity="center"
         android:text="µg/m³ "
         android:textAlignment="center"
@@ -124,14 +125,24 @@
         android:id="@+id/pm25Value"
         android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="108dp"
         android:gravity="center"
         android:text="--"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pm25Label" />
+
+    <LinearLayout
+        android:id="@+id/pmCloud"
+        android:layout_width="73dp"
+        android:layout_height="67dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225"></LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
