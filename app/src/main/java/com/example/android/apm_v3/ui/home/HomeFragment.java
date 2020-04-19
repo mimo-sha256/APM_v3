@@ -155,6 +155,7 @@ public class HomeFragment extends Fragment {
                             },
                             throwable -> {
                                 // Handle an error here.
+                                Log.e("Connection Error",throwable.getMessage());
                             }
                     );
         }
@@ -170,6 +171,7 @@ public class HomeFragment extends Fragment {
         double averageAQI = findAverageAQI(pm25AQI, pm10AQI);
         AQI.setText(String.valueOf(averageAQI));
         setColors(pm25AQI,pm10AQI,averageAQI);
+        Log.i("Location", myLocation.getLatitude() + " " + myLocation.getLongitude() + " " + myLocation.getAccuracy());
     }
 
     public void setColors(double pm25AQI, double pm10AQI, double averageAQI) {
