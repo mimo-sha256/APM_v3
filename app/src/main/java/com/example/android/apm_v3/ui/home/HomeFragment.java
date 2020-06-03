@@ -1,6 +1,8 @@
 package com.example.android.apm_v3.ui.home;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -25,6 +29,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,7 +70,7 @@ public class HomeFragment extends Fragment {
     static LocationManager locationManager;
     static Disposable disposable;
     static TextView AQI;
-    static LinearLayout pmCloud;
+    static ImageView pmCloud;
     static TextView pm25Value;
     static TextView pm10Value;
     static TextView pmValues;
@@ -79,7 +85,11 @@ public class HomeFragment extends Fragment {
     static String mask;
     static String modeOfTransport;
     SimpleDateFormat dateFormat;
+    static NotificationCompat.Builder notificationBuilder;
+    static NotificationManagerCompat notificationManager;
     final UUID characteristicUUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
+    private static final String CHANNEL_ID = "1";
+    private static final int notificaionId = 2;
 
     @SuppressLint("MissingPermission")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -98,6 +108,28 @@ public class HomeFragment extends Fragment {
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_awaire2)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setOnlyAlertOnce(true)
+                .setOngoing(true)
+                .setColorized(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        notificationManager = NotificationManagerCompat.from(context);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "my channel";
+            String description = "the quick brown fox jumps over the lazy dog";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager.createNotificationChannel(channel);
+        }
 
         if(locationManager == null) {
             locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -228,7 +260,8 @@ public class HomeFragment extends Fragment {
         apData.put("Longitude", longitude);
         apData.put("Mask", mask);
         apData.put("ModeOfTransport", modeOfTransport);
-        apData.put("DateTime",currentDateTime);
+        apData.put("Date",currentDateTime.split(" ")[0]);
+        apData.put("Time",currentDateTime.split(" ")[1]);
 
         db.collection("apData")
                 .add(apData)
@@ -303,40 +336,60 @@ public class HomeFragment extends Fragment {
         int AQICategory = Math.max(pm25Category, pm10Category);
         if(AQICategory == 0) {
             AQI.setText(R.string.Good);
-            AQI.setTextColor(Color.parseColor("#00cc00"));
-            AQI.setBackgroundColor(0xe0ffe0);
-            pmCloud.setBackgroundResource(R.drawable.ic_good_cloud);
+            AQI.setTextColor(0xff00cc00);
+            AQI.setBackgroundColor(0xffe0ffe0);
+            notificationBuilder.setContentTitle("Good");
+            notificationBuilder.setColor(0xffe0ffe0);
+            notificationBuilder.setSmallIcon(R.drawable.ic_good_cloud);
+            pmCloud.setImageResource(R.drawable.ic_good_cloud);
         }
         else if(AQICategory == 1) {
             AQI.setText("Satisfactory");
-            AQI.setTextColor(Color.parseColor("#66cc00"));
-            AQI.setBackgroundColor(0xefffe0);
-            pmCloud.setBackgroundResource(R.drawable.ic_satisfactory_cloud);
+            AQI.setTextColor(0xff66cc00);
+            AQI.setBackgroundColor(0xffefffe0);
+            notificationBuilder.setContentTitle("Satisfactory");
+            notificationBuilder.setColor(0xffefffe0);
+            notificationBuilder.setSmallIcon(R.drawable.ic_satisfactory_cloud);
+            pmCloud.setImageResource(R.drawable.ic_satisfactory_cloud);
         }
         else if(AQICategory == 2) {
             AQI.setText("Moderate");
-            AQI.setTextColor(Color.parseColor("#ffff00"));
-            AQI.setBackgroundColor(0xffffd8);
-            pmCloud.setBackgroundResource(R.drawable.ic_moderate_cloud);
+            AQI.setTextColor(0xffffff00);
+            AQI.setBackgroundColor(0xffffffd8);
+            notificationBuilder.setContentTitle("Moderate");
+            notificationBuilder.setColor(0xffffffd8);
+            notificationBuilder.setSmallIcon(R.drawable.ic_moderate_cloud);
+            pmCloud.setImageResource(R.drawable.ic_moderate_cloud);
         }
         else if(AQICategory == 3) {
             AQI.setText("Poor");
-            AQI.setTextColor(Color.parseColor("#ff9900"));
-            AQI.setBackgroundColor(0xffefd8);
-            pmCloud.setBackgroundResource(R.drawable.ic_poor_cloud);
+            AQI.setTextColor(0xffff9900);
+            AQI.setBackgroundColor(0xffffefd8);
+            notificationBuilder.setContentTitle("Poor");
+            notificationBuilder.setColor(0xffffefd8);
+            notificationBuilder.setSmallIcon(R.drawable.ic_poor_cloud);
+            pmCloud.setImageResource(R.drawable.ic_poor_cloud);
         }
         else if(AQICategory == 4) {
             AQI.setText("Very Poor");
-            AQI.setTextColor(Color.parseColor("#ff0000"));
-            AQI.setBackgroundColor(0xffd8d8);
-            pmCloud.setBackgroundResource(R.drawable.ic_very_poor_cloud);
+            AQI.setTextColor(0xffff0000);
+            AQI.setBackgroundColor(0xffff0000);
+            notificationBuilder.setContentTitle("Very Poor");
+            notificationBuilder.setColor(0xffff0000);
+            notificationBuilder.setSmallIcon(R.drawable.ic_very_poor_cloud);
+            pmCloud.setImageResource(R.drawable.ic_very_poor_cloud);
         }
         else if(AQICategory == 5) {
             AQI.setText("Severe");
-            AQI.setTextColor(Color.parseColor("#a52a2a"));
-            AQI.setBackgroundColor(0xf9e8e8);
+            AQI.setTextColor(0xffa52a2a);
+            AQI.setBackgroundColor(0xfff9e8e8);
+            notificationBuilder.setContentTitle("Severe");
+            notificationBuilder.setColor(0xfff9e8e8);
+            notificationBuilder.setSmallIcon(R.drawable.ic_severe_cloud);
             pmCloud.setBackgroundResource(R.drawable.ic_severe_cloud);
         }
+        notificationBuilder.setContentText("PM 10 : " + pm10 + " | PM 2.5 : " + pm25);
+        notificationManager.notify(notificaionId, notificationBuilder.build());
     }
 
     /*public void setColors(double pm25AQI, double pm10AQI, double averageAQI) {

@@ -49,9 +49,11 @@
         android:id="@+id/AQI"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
         android:text="----"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -133,16 +135,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pm25Label" />
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/pmCloud"
-        android:layout_width="73dp"
-        android:layout_height="67dp"
-        android:orientation="horizontal"
+        android:layout_width="100dp"
+        android:layout_height="81dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"></LinearLayout>
+        app:layout_constraintVertical_bias="0.22"
+        app:srcCompat="@drawable/ic_good_cloud" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

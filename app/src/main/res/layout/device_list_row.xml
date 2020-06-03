@@ -13,30 +13,36 @@
 
     </ListView>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:weightSum="100">
 
         <Button
             android:id="@+id/ScanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:layout_marginLeft="110dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="35dp"
             android:backgroundTint="#0BB306"
-            android:text="SCAN" />
+            android:text="SCAN"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/CancelButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48000002" />
 
         <Button
             android:id="@+id/CancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="100dp"
             android:backgroundTint="#FD2A2A"
-            android:text="CANCEL" />
-    </LinearLayout>
+            android:text="CANCEL"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

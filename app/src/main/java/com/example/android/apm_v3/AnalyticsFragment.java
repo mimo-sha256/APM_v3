@@ -26,11 +26,16 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -60,7 +65,9 @@ public class AnalyticsFragment extends Fragment {
             db = FirebaseFirestore.getInstance();
         }
 
-        db.collection("apData").orderBy("DateTime")
+        db.collection("apData")
+                .whereEqualTo("Date","2020-04-27")
+                .orderBy("Time")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -71,12 +78,13 @@ public class AnalyticsFragment extends Fragment {
                             for(DocumentSnapshot document : list) {
                                 double pm10 = Double.parseDouble(document.get("PM10").toString());
                                 double pm25 = Double.parseDouble(document.get("PM25").toString());
-                                String split[] = document.get("DateTime").toString().split(" ")[1].split(":");
-                                double x = Double.parseDouble(split[0])*3600 + Double.parseDouble(split[1])*60 + Double.parseDouble(split[2]);
+                                String split[] = document.get("Time").toString().split(":");
+                                double x = Double.parseDouble(split[0])*3600 + Double.parseDouble(split[1])*60 + Double.parseDouble(split[1]);
+                                //Double.parseDouble(split[0])*3600 + Double.parseDouble(split[1])*60 + Double.parseDouble(split[2]);
                                 DataPoint dp_pm25 = new DataPoint(x, pm25);
                                 DataPoint dp_pm10 = new DataPoint(x, pm10);
-                                seriespm25.appendData(dp_pm25,true,100);
-                                seriespm10.appendData(dp_pm10, true, 100);
+                                seriespm25.appendData(dp_pm25,true,30);
+                                seriespm10.appendData(dp_pm10, true, 30);
                             }
                             createGraph(seriespm25,seriespm10);
                         }
@@ -90,6 +98,49 @@ public class AnalyticsFragment extends Fragment {
         try {
             graph_pm25.addSeries(seriespm25);
             graph_pm10.addSeries(seriespm10);
+            graph_pm25.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if(isValueX) {
+                        double hour = Math.floor(value/3600);
+                        double second = (value - hour*3600)/60;
+                        return super.formatLabel( hour, isValueX);
+                    }
+                    return super.formatLabel(value, isValueX);
+                }
+            });
+            graph_pm25.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+
+// set manual x bounds to have nice steps
+           /* graph_pm25.getViewport().setMinX(d1.getTime());
+            graph_pm25.getViewport().setMaxX(d3.getTime());
+            graph_pm25.getViewport().setXAxisBoundsManual(true);*/
+
+// as we use dates as labels, the human rounding to nice readable numbers
+// is not necessary
+//            graph_pm25.getGridLabelRenderer().setHumanRounding(false);
+
+            graph_pm10.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if(isValueX) {
+                        double hour = Math.floor(value/3600);
+                        double second = (value - hour)/60;
+                        return super.formatLabel( hour, isValueX);
+                    }
+                    return super.formatLabel(value, isValueX);
+                }
+            });
+            graph_pm10.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+
+// set manual x bounds to have nice steps
+            /*graph_pm10.getViewport().setMinX(d1.getTime());
+            graph_pm10.getViewport().setMaxX(d3.getTime());
+            graph_pm10.getViewport().setXAxisBoundsManual(true);
+*/
+// as we use dates as labels, the human rounding to nice readable numbers
+// is not necessary
+//            graph_pm10.getGridLabelRenderer().setHumanRounding(false);
         }
         catch (IllegalArgumentException e) {
             Log.e("error",e.getMessage());
