@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,7 +93,7 @@ public class MapFragment extends Fragment {
                         .tilt(45)
                         .build();
 
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 10000, null);
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 3000, null);
 
 /*                for (int i=0; i < locations.size()-1; i++){
                     Polyline polyline = googleMap.addPolyline(new PolylineOptions()
@@ -110,14 +113,17 @@ public class MapFragment extends Fragment {
                                 if(!queryDocumentSnapshots.isEmpty()) {
                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
-                                    for(int x=0; x<list.size(); x++) {
+                                    for(int x=0; x<list.size()-1; x++) {
                                         double pm10 = Double.parseDouble(list.get(x+1).get("PM10").toString());
                                         double pm25 = Double.parseDouble(list.get(x+1).get("PM25").toString());
                                         double fromLatitude = Double.parseDouble(list.get(x).get("Latitude").toString());
                                         double fromLongitude = Double.parseDouble(list.get(x).get("Longitude").toString());
-                                        double toLatitude = Double.parseDouble(list.get(x+1).get("Longitude").toString());
+                                        double toLatitude = Double.parseDouble(list.get(x+1).get("Latitude").toString());
                                         double toLongitude = Double.parseDouble(list.get(x+1).get("Longitude").toString());
-
+                                        Log.i("fromLat", String.valueOf(fromLatitude));
+                                        Log.i("fromLong", String.valueOf(fromLongitude));
+                                        Log.i("toLat", String.valueOf(toLatitude));
+                                        Log.i("toLong", String.valueOf(toLongitude));
                                         Polyline polyline = googleMap.addPolyline(new PolylineOptions()
                                                 .clickable(false)
                                                 .add(new LatLng(fromLatitude,fromLongitude),new LatLng(toLatitude,toLongitude)));
@@ -165,7 +171,13 @@ public class MapFragment extends Fragment {
                 datePickerDialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                        selectedDate = year + "-" + (month + 1) + "-" + day;
+                        String s = year + "-" + (month + 1) + "-" + day;
+                        try {
+                            Date selDate = dateFormat.parse(s + " 00:00:00");
+                            selectedDate = dateFormat.format(selDate).split(" ")[0];
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         selectedDateView.setText(selectedDate);
                         mapFragment.getMapAsync(new OnMapReadyCallback() {
                             @Override
@@ -174,14 +186,6 @@ public class MapFragment extends Fragment {
 
                                 googleMap.clear(); //clear old markers
 
-                                CameraPosition googlePlex = CameraPosition.builder()
-                                        .target(new LatLng(12.950000, 77.700000))
-                                        .zoom(12)
-                                        .bearing(0)
-                                        .tilt(45)
-                                        .build();
-
-                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 10000, null);
 
 /*                for (int i=0; i < locations.size()-1; i++){
                     Polyline polyline = googleMap.addPolyline(new PolylineOptions()
@@ -192,7 +196,7 @@ public class MapFragment extends Fragment {
 
 
                                 db.collection("apData")
-                                        .whereEqualTo("Date", currentDate)
+                                        .whereEqualTo("Date", selectedDate)
                                         .orderBy("Time")
                                         .get()
                                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -201,7 +205,7 @@ public class MapFragment extends Fragment {
                                                 if (!queryDocumentSnapshots.isEmpty()) {
                                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
-                                                    for (int x = 0; x < list.size(); x++) {
+                                                    for (int x = 0; x < list.size()-1; x++) {
                                                         double pm10 = Double.parseDouble(list.get(x + 1).get("PM10").toString());
                                                         double pm25 = Double.parseDouble(list.get(x + 1).get("PM25").toString());
                                                         double fromLatitude = Double.parseDouble(list.get(x).get("Latitude").toString());
