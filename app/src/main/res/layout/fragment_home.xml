@@ -152,7 +152,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Air Quality"
+        android:text="Current Exposure"
         android:textColor="#3F3382"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
