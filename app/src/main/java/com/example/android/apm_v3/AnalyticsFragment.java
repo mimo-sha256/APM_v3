@@ -50,6 +50,9 @@ public class AnalyticsFragment extends Fragment {
     private SimpleDateFormat dateFormat;
     private double pm25_avg = 0.0;
     private double pm10_avg = 0.0;
+    private double pm25_avg_Walking = 0.0;
+    private double pm10_avg_Walking = 0.0;
+
     ArrayList<DocumentSnapshot> list = new ArrayList<>();
 
     public static AnalyticsFragment newInstance() {
@@ -102,7 +105,6 @@ public class AnalyticsFragment extends Fragment {
                     }
                 });
 
-        setAvgByTransportMode();
 
         return root;
     }
@@ -159,30 +161,6 @@ public class AnalyticsFragment extends Fragment {
             Log.e("error",e.getMessage());
         }
 
-    }
-
-    public void setAvgByTransportMode() {
-        db.collection("apData")
-                .whereEqualTo("Date",currentDate)
-                .whereEqualTo("Mask","No Mask")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-
-                            for(DocumentSnapshot document : list) {
-                                double pm10 = Double.parseDouble(document.get("PM10").toString());
-                                pm10_avg += pm10;
-                                double pm25 = Double.parseDouble(document.get("PM25").toString());
-                                pm25_avg += pm25;
-                            }
-                            pm10_avg = pm10_avg/list.size();
-                            pm25_avg = pm25_avg/list.size();
-                        }
-                    }
-                });
     }
 
     @Override
