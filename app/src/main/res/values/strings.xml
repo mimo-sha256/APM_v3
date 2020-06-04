@@ -13,6 +13,7 @@
 
     <string name="home_second">Home Second</string>
     <string-array name="maskArray">
+        <item>Mask type</item>
         <item>No mask</item>
         <item>N95</item>
         <item>Surgical</item>
@@ -22,11 +23,13 @@
         <item>Sponge</item>
     </string-array>
     <string-array name="transportArray">
+        <item>Mode of transport</item>
         <item>Walking</item>
-        <item>Car</item>
-        <item>Scooter/Bike/Cycle/Auto</item>
+        <item>AC Car</item>
+        <item>Non-AC Car</item>
         <item>AC Bus</item>
         <item>Non-AC Bus</item>
+        <item>Two Wheeler/Three Wheeler</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
