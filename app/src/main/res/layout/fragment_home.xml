@@ -63,29 +63,30 @@
 
     <Spinner
         android:id="@+id/maskSpinner"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginStart="47dp"
         android:layout_marginEnd="17dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/maskArray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintVertical_bias="0.71" />
 
     <Spinner
         android:id="@+id/transportSpinner"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="47dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/transportArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maskSpinner"
+        app:layout_constraintVertical_bias="0.069" />
 
     <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
         android:id="@+id/analog_clock"
@@ -94,7 +95,7 @@
         app:default_watchface="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.072" />
@@ -146,6 +147,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22"
         app:srcCompat="@drawable/ic_good_cloud" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Air Quality"
+        android:textColor="#3F3382"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

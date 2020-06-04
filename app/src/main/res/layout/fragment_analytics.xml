@@ -7,8 +7,10 @@
     tools:context=".AnalyticsFragment">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="411dp"
         android:layout_height="730dp"
+        android:background="#E5F6FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,10 +21,119 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:padding="10dp"
+                android:text="Your average exposure today"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#3F3382" />
+
+            <TableRow
+                android:id="@+id/hr"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#696969">
+
+            </TableRow>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="254dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pm2.5AvgCard"
+                    android:layout_width="176dp"
+                    android:layout_height="220dp"
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="5dip">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PM2.5" />
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pm10AvgCard"
+                    android:layout_width="176dp"
+                    android:layout_height="220dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="30dip">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PM10" />
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cautionaryStatementCard"
+                android:layout_width="365dp"
+                android:layout_height="83dp"
+                android:layout_marginLeft="22dip"
+                android:layout_marginRight="20dip">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cautionary Statement" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:padding="10dp"
+                android:text="Insights"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#3F3382" />
+
+            <TableRow
+                android:id="@+id/hr1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#696969">
+
+            </TableRow>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:padding="10dp"
+                android:text="Your exposure tracked graphically"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#3F3382" />
+
+            <TableRow
+                android:id="@+id/hr2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#696969">
+
+            </TableRow>
+
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graph_pm25"
                 android:layout_width="match_parent"
-                android:layout_height="200dip" />
+                android:layout_height="200dip"
+                android:layout_marginTop="20dip" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -38,7 +149,7 @@
                 android:id="@+id/graph_pm10"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
-                android:layout_marginTop="30dip"/>
+                android:layout_marginTop="10dip" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -49,6 +160,7 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 
