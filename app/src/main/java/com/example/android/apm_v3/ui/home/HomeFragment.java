@@ -83,6 +83,7 @@ public class HomeFragment extends Fragment {
     static CustomAnalogClock customAnalogClock;
     static FirebaseFirestore db;
     static String mask;
+    static int exposure_reduction_percentage = 0;
     static String modeOfTransport;
     SimpleDateFormat dateFormat;
     static NotificationCompat.Builder notificationBuilder;
@@ -181,6 +182,22 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 mask = maskSpinner.getSelectedItem().toString();
+                switch (mask) {
+                    case "No mask": exposure_reduction_percentage = 0;
+                    break;
+                    case "N95": exposure_reduction_percentage = 95;
+                    break;
+                    case "Surgical": exposure_reduction_percentage = 80;
+                    break;
+                    case "FFFP1": exposure_reduction_percentage = 80;
+                    break;
+                    case "Activated carbon": exposure_reduction_percentage = 50;
+                    break;
+                    case "Cloth": exposure_reduction_percentage = 50;
+                    break;
+                    case "Sponge": exposure_reduction_percentage = 5;
+                    break;
+                }
             }
 
             @Override
@@ -225,7 +242,7 @@ public class HomeFragment extends Fragment {
                                 // Given characteristic has been changes, here is the value.
                                 String message = new String(bytes);
                                 String pmValues[] = message.split(" ");
-                                setValues(pmValues[0], pmValues[1]);
+                                setValues(Double.parseDouble(pmValues[0]), Double.parseDouble(pmValues[1]));
                                 Log.i("Readings", new String(bytes));
                             },
                             throwable -> {
@@ -238,16 +255,20 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public void setValues(String pm25, String pm10) {
-        pm25Value.setText(pm25);
-        pm10Value.setText(pm10);
+    public void setValues(double pm25, double pm10) {
+
         /*double pm25AQI = calculatePM25_AQI(Double.parseDouble(pm25));
         double pm10AQI = calculatePM10_AQI(Double.parseDouble(pm10));
         double averageAQI = findAverageAQI(pm25AQI, pm10AQI);*/
         //AQI.setText(String.valueOf(averageAQI));
+        double pm25_exposure = pm25 - (pm25*exposure_reduction_percentage)/100;
+        double pm10_exposure = pm10 - (pm10*exposure_reduction_percentage)/100;
 
-        setColors(Double.parseDouble(pm25),Double.parseDouble(pm10));
-        sendToDB(Double.parseDouble(pm25), Double.parseDouble(pm10), myLocation.getLatitude(), myLocation.getLongitude());
+        pm25Value.setText(String.valueOf(pm25_exposure));
+        pm10Value.setText(String.valueOf(pm10_exposure));
+
+        setColors(pm25_exposure, pm10_exposure);
+        sendToDB(pm25_exposure, pm10_exposure, myLocation.getLatitude(), myLocation.getLongitude());
         Log.i("Location", myLocation.getLatitude() + " " + myLocation.getLongitude() + " " + myLocation.getAccuracy());
     }
 

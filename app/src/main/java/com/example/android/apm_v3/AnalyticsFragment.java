@@ -46,6 +46,10 @@ public class AnalyticsFragment extends Fragment {
     static GraphView graph_pm25;
     static GraphView graph_pm10;
     static FirebaseFirestore db;
+    private String currentDate;
+    private SimpleDateFormat dateFormat;
+    private double pm25_avg = 0.0;
+    private double pm10_avg = 0.0;
     ArrayList<DocumentSnapshot> list = new ArrayList<>();
 
     public static AnalyticsFragment newInstance() {
@@ -61,12 +65,15 @@ public class AnalyticsFragment extends Fragment {
         LineGraphSeries<DataPoint> seriespm25 = new LineGraphSeries <>();
         LineGraphSeries<DataPoint> seriespm10 = new LineGraphSeries <>();
 
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        currentDate = dateFormat.format(new Date()).split(" ")[0];
+
         if(db == null) {
             db = FirebaseFirestore.getInstance();
         }
 
         db.collection("apData")
-                .whereEqualTo("Date","2020-04-27")
+                .whereEqualTo("Date",currentDate)
                 .orderBy("Time")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -77,7 +84,9 @@ public class AnalyticsFragment extends Fragment {
 
                             for(DocumentSnapshot document : list) {
                                 double pm10 = Double.parseDouble(document.get("PM10").toString());
+                                pm10_avg += pm10;
                                 double pm25 = Double.parseDouble(document.get("PM25").toString());
+                                pm25_avg += pm25;
                                 String split[] = document.get("Time").toString().split(":");
                                 double x = Double.parseDouble(split[0])*3600 + Double.parseDouble(split[1])*60 + Double.parseDouble(split[1]);
                                 //Double.parseDouble(split[0])*3600 + Double.parseDouble(split[1])*60 + Double.parseDouble(split[2]);
@@ -86,10 +95,14 @@ public class AnalyticsFragment extends Fragment {
                                 seriespm25.appendData(dp_pm25,true,30);
                                 seriespm10.appendData(dp_pm10, true, 30);
                             }
+                            pm10_avg = pm10_avg/list.size();
+                            pm25_avg = pm25_avg/list.size();
                             createGraph(seriespm25,seriespm10);
                         }
                     }
                 });
+
+        setAvgByTransportMode();
 
         return root;
     }
@@ -146,6 +159,30 @@ public class AnalyticsFragment extends Fragment {
             Log.e("error",e.getMessage());
         }
 
+    }
+
+    public void setAvgByTransportMode() {
+        db.collection("apData")
+                .whereEqualTo("Date",currentDate)
+                .whereEqualTo("Mask","No Mask")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+
+                            for(DocumentSnapshot document : list) {
+                                double pm10 = Double.parseDouble(document.get("PM10").toString());
+                                pm10_avg += pm10;
+                                double pm25 = Double.parseDouble(document.get("PM25").toString());
+                                pm25_avg += pm25;
+                            }
+                            pm10_avg = pm10_avg/list.size();
+                            pm25_avg = pm25_avg/list.size();
+                        }
+                    }
+                });
     }
 
     @Override

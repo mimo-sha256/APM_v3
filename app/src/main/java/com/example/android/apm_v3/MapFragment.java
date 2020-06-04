@@ -57,19 +57,7 @@ public class MapFragment extends Fragment {
         selectedDate = currentDate;
         selectedDateView.setText(selectedDate);
 
-        changeSelectedDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePickerDialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                        selectedDate = year + "-" + (month+1) + "-" + day;
-                        selectedDateView.setText(selectedDate);
-                    }
-                }, Integer.parseInt(selectedDate.split("-")[0]), Integer.parseInt(selectedDate.split("-")[1])-1, Integer.parseInt(selectedDate.split("-")[2]));
-                datePickerDialog.show();
-            }
-        });
+
 
         locations.add(new LatLng(37.4219999,-122.0862462));
         locations.add(new LatLng(37.4629101,-122.2449094));
@@ -128,6 +116,52 @@ public class MapFragment extends Fragment {
                         .clickable(false)
                         .add(new LatLng(12.945782,77.698353),new LatLng(12.937919,77.693868)));
                 polyline6.setColor(0xffa52a2a);
+            }
+        });
+
+        changeSelectedDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
+                        selectedDate = year + "-" + (month+1) + "-" + day;
+                        selectedDateView.setText(selectedDate);
+                    }
+                }, Integer.parseInt(selectedDate.split("-")[0]), Integer.parseInt(selectedDate.split("-")[1])-1, Integer.parseInt(selectedDate.split("-")[2]));
+                datePickerDialog.show();
+                mapFragment.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                        googleMap.clear(); //clear old markers
+
+                        CameraPosition googlePlex = CameraPosition.builder()
+                                .target(new LatLng(12.950000, 77.700000))
+                                .zoom(12)
+                                .bearing(0)
+                                .tilt(45)
+                                .build();
+
+                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 10000, null);
+
+                        Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+                                .clickable(false)
+                                .add(new LatLng(12.973706,77.698348),new LatLng(12.966868,77.702125)));
+                        polyline1.setColor(0xff00cc00);
+
+                        Polyline polyline2 = googleMap.addPolyline(new PolylineOptions()
+                                .clickable(false)
+                                .add(new LatLng(12.966868,77.702125),new LatLng(12.963355,77.701824)));
+                        polyline2.setColor(0xff66cc00);
+
+                        Polyline polyline3 = googleMap.addPolyline(new PolylineOptions()
+                                .clickable(false)
+                                .add(new LatLng(12.963355,77.701824),new LatLng(12.957228,77.701202)));
+                        polyline3.setColor(0xffffff00);
+                    }
+                });
             }
         });
         return root;
