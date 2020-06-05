@@ -47,30 +47,30 @@
 
     <Spinner
         android:id="@+id/maskSpinner"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_marginEnd="17dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/maskArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintHorizontal_bias="0.798"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <Spinner
         android:id="@+id/transportSpinner"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/transportArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maskSpinner"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
         android:id="@+id/analog_clock"
