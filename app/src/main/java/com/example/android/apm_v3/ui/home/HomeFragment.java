@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment {
     static ImageView pmCloud;
     static TextView pm25Value;
     static TextView pm10Value;
-    static TextView pmValues;
+    static CardView categoryCardView;
     static LocationListener locationListener;
     static Location myLocation;
     static Spinner maskSpinner;
@@ -106,6 +107,7 @@ public class HomeFragment extends Fragment {
         scanButton = root.findViewById(R.id.ScanButton);
         maskSpinner = root.findViewById(R.id.maskSpinner);
         modeOfTransportSpinner = root.findViewById(R.id.transportSpinner);
+        categoryCardView = root.findViewById(R.id.categoryCardView);
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -375,7 +377,7 @@ public class HomeFragment extends Fragment {
         }
         else if(AQICategory == 2) {
             AQI.setText("Moderate");
-            AQI.setTextColor(0xffffff00);
+            AQI.setTextColor(0xffffca0a);
             AQI.setBackgroundColor(0xffffffd8);
             notificationBuilder.setContentTitle("Moderate");
             notificationBuilder.setColor(0xffffffd8);
@@ -409,7 +411,7 @@ public class HomeFragment extends Fragment {
             notificationBuilder.setSmallIcon(R.drawable.ic_severe_cloud);
             pmCloud.setBackgroundResource(R.drawable.ic_severe_cloud);
         }
-        notificationBuilder.setContentText("PM 10 : " + pm10 + " | PM 2.5 : " + pm25);
+        notificationBuilder.setContentText("PM2.5 : " + pm25 + " µg/m³" + " | PM10 : " + pm10 + " µg/m³");
         notificationManager.notify(notificaionId, notificationBuilder.build());
     }
 

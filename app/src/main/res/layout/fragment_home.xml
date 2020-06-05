@@ -16,11 +16,11 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="108dp"
         android:gravity="center"
-        android:text="PM 10"
+        android:text="PM10"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryCardView" />
 
     <TextView
         android:id="@+id/pm10Unit"
@@ -44,22 +44,6 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pm10Label" />
-
-    <TextView
-        android:id="@+id/AQI"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:text="----"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.323" />
 
     <Spinner
         android:id="@+id/maskSpinner"
@@ -107,11 +91,11 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="56dp"
         android:gravity="center"
-        android:text="PM 2.5"
+        android:text="PM2.5"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AQI" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryCardView" />
 
     <TextView
         android:id="@+id/pm25Unit"
@@ -161,6 +145,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categoryCardView"
+        android:layout_width="255dp"
+        android:layout_height="66dp"
+        android:clipToPadding="true"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335">
+
+        <TextView
+            android:id="@+id/AQI"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="----"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

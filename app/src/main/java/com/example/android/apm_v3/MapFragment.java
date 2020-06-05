@@ -95,14 +95,6 @@ public class MapFragment extends Fragment {
 
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 3000, null);
 
-/*                for (int i=0; i < locations.size()-1; i++){
-                    Polyline polyline = googleMap.addPolyline(new PolylineOptions()
-                        .clickable(false)
-                        .add(locations.get(i),locations.get(i+1)));
-                    polyline.setColor(0xffff0000);
-                }*/
-
-
                 db.collection("apData")
                         .whereEqualTo("Date",currentDate)
                         .orderBy("Time")
@@ -133,7 +125,7 @@ public class MapFragment extends Fragment {
                             }
                         });
 
-/*                Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+                /*Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
                         .add(new LatLng(12.973706,77.698348),new LatLng(12.966868,77.702125)));
                 polyline1.setColor(0xff00cc00);
@@ -185,15 +177,6 @@ public class MapFragment extends Fragment {
                                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                                 googleMap.clear(); //clear old markers
-
-
-/*                for (int i=0; i < locations.size()-1; i++){
-                    Polyline polyline = googleMap.addPolyline(new PolylineOptions()
-                        .clickable(false)
-                        .add(locations.get(i),locations.get(i+1)));
-                    polyline.setColor(0xffff0000);
-                }*/
-
 
                                 db.collection("apData")
                                         .whereEqualTo("Date", selectedDate)
