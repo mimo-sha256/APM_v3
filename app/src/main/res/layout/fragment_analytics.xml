@@ -153,10 +153,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cautionaryStatementCard"
-                android:layout_width="359dp"
+                android:layout_width="361dp"
                 android:layout_height="85dp"
                 app:cardCornerRadius="15dp"
-                android:layout_marginLeft="25dip"
+                android:layout_marginLeft="24dip"
                 android:layout_marginRight="20dip">
 
                 <LinearLayout
@@ -226,6 +226,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textColor="#000000"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: Walking" />
@@ -236,6 +237,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:text="PM2.5: "
                                 android:textSize="13sp"
                                 android:textColor="#000000" />
@@ -246,6 +248,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:text="PM10: "
                                 android:textSize="13sp"
                                 android:textColor="#000000" />
@@ -256,6 +259,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />
@@ -273,6 +278,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: AC Car"
                                 android:textColor="#000000" />
@@ -283,6 +289,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM2.5: "
                                 android:textColor="#000000" />
@@ -293,6 +300,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM10: "
                                 android:textColor="#000000" />
@@ -303,6 +311,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />
@@ -327,6 +337,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: Car"
                                 android:textColor="#000000" />
@@ -337,6 +348,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM2.5: "
                                 android:textColor="#000000" />
@@ -347,6 +359,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM10: "
                                 android:textColor="#000000" />
@@ -357,6 +370,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />
@@ -374,6 +389,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: AC Bus"
                                 android:textColor="#000000" />
@@ -384,6 +400,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM2.5: "
                                 android:textColor="#000000" />
@@ -394,6 +411,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM10: "
                                 android:textColor="#000000" />
@@ -404,6 +422,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />
@@ -428,6 +448,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: Bus"
                                 android:textColor="#000000" />
@@ -438,6 +459,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM2.5: "
                                 android:textColor="#000000" />
@@ -448,6 +470,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM10: "
                                 android:textColor="#000000" />
@@ -458,6 +481,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />
@@ -475,6 +500,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="Mode of Transport: 2/3 Wheeler"
                                 android:textColor="#000000" />
@@ -485,6 +511,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM2.5: "
                                 android:textColor="#000000" />
@@ -495,6 +522,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
                                 android:textSize="13sp"
                                 android:text="PM10: "
                                 android:textColor="#000000" />
@@ -505,6 +533,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="60dp"
                                 android:paddingLeft="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
                                 android:textSize="13sp"
                                 android:text="Time Spent: "
                                 android:textColor="#000000" />

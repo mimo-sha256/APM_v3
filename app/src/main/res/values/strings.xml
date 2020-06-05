@@ -13,17 +13,17 @@
 
     <string name="home_second">Home Second</string>
     <string-array name="maskArray">
-        <item>Mask type</item>
+        <item>Select</item>
         <item>No mask</item>
-        <item>N95</item>
-        <item>Surgical</item>
-        <item>FFP1</item>
-        <item>Activated carbon</item>
-        <item>Cloth</item>
-        <item>Sponge</item>
+        <item>N95 mask</item>
+        <item>Surgical mask</item>
+        <item>FFP1 mask</item>
+        <item>Activated carbon mask</item>
+        <item>Cloth mask</item>
+        <item>Sponge mask</item>
     </string-array>
     <string-array name="transportArray">
-        <item>Mode of transport</item>
+        <item>Select</item>
         <item>Walking</item>
         <item>AC Car</item>
         <item>Non-AC Car</item>

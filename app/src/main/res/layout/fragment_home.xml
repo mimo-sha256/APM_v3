@@ -54,6 +54,7 @@
         android:text="----"
         android:textAlignment="center"
         android:textSize="36sp"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -63,30 +64,30 @@
 
     <Spinner
         android:id="@+id/maskSpinner"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_marginEnd="17dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/maskArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintHorizontal_bias="0.798"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <Spinner
         android:id="@+id/transportSpinner"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:background="@drawable/spinner_rect"
         android:entries="@array/transportArray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maskSpinner"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <com.tomerrosenfeld.customanalogclockview.CustomAnalogClock
         android:id="@+id/analog_clock"
@@ -161,6 +162,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="16dp"
+        android:text="Mask Type: "
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/maskSpinner"
+        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Mode of Transport:"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.208" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
