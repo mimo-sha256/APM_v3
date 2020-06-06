@@ -191,17 +191,17 @@ public class HomeFragment extends Fragment {
                     break;
                     case "No mask": exposure_reduction_percentage = 0;
                     break;
-                    case "N95": exposure_reduction_percentage = 95;
+                    case "N95 mask": exposure_reduction_percentage = 95;
                     break;
-                    case "Surgical": exposure_reduction_percentage = 80;
+                    case "Surgical mask": exposure_reduction_percentage = 80;
                     break;
-                    case "FFFP1": exposure_reduction_percentage = 80;
+                    case "FFFP1 mask": exposure_reduction_percentage = 80;
                     break;
-                    case "Activated carbon": exposure_reduction_percentage = 50;
+                    case "Activated carbon mask": exposure_reduction_percentage = 50;
                     break;
-                    case "Cloth": exposure_reduction_percentage = 50;
+                    case "Cloth mask": exposure_reduction_percentage = 50;
                     break;
-                    case "Sponge": exposure_reduction_percentage = 5;
+                    case "Sponge mask": exposure_reduction_percentage = 5;
                     break;
                 }
             }

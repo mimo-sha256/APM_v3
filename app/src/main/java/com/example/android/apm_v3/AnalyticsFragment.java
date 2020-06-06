@@ -235,8 +235,8 @@ public class AnalyticsFragment extends Fragment {
             pm25_avg_AC_Car = pm25_avg_AC_Car / count_AC_Car;
             time_spent_AC_Car = (count_AC_Car * 30)/60;
 
-            pm10ACCarTV.setText("PM10: " + getPM10Category(pm10_avg_Walking) + ", " + (int)pm10_avg_Walking + " µg/m³");
-            pm25ACCarTV.setText("PM2.5: " + getPM25Category(pm25_avg_Walking) + ", " + (int)pm25_avg_Walking + " µg/m³");
+            pm10ACCarTV.setText("PM10: " + getPM10Category(pm10_avg_AC_Car) + ", " + (int)pm10_avg_AC_Car + " µg/m³");
+            pm25ACCarTV.setText("PM2.5: " + getPM25Category(pm25_avg_AC_Car) + ", " + (int)pm25_avg_AC_Car + " µg/m³");
             timeSpentACCarTV.setText("Time Spent: " + (int)time_spent_AC_Car + " mins");
 
         }
@@ -245,8 +245,8 @@ public class AnalyticsFragment extends Fragment {
             pm25_avg_Non_AC_Car = pm25_avg_Non_AC_Car / count_Non_AC_Car;
             time_spent_Non_AC_Car = (count_Non_AC_Car * 30)/60;
 
-            pm10CarTV.setText("PM10: " + getPM10Category(pm10_avg_Walking) + ", " + (int)pm10_avg_Walking + " µg/m³");
-            pm25CarTV.setText("PM2.5: " + getPM25Category(pm25_avg_Walking) + ", " + (int)pm25_avg_Walking + " µg/m³");
+            pm10CarTV.setText("PM10: " + getPM10Category(pm10_avg_Non_AC_Car) + ", " + (int)pm10_avg_Non_AC_Car + " µg/m³");
+            pm25CarTV.setText("PM2.5: " + getPM25Category(pm25_avg_Non_AC_Car) + ", " + (int)pm25_avg_Non_AC_Car + " µg/m³");
             timeSpentCarTV.setText("Time Spent: " + (int)time_spent_Non_AC_Car + " mins");
 
         }
@@ -255,8 +255,8 @@ public class AnalyticsFragment extends Fragment {
             pm25_avg_AC_Bus = pm25_avg_AC_Bus / count_AC_Bus;
             time_spent_AC_Bus = (count_AC_Bus * 30)/60;
 
-            pm10ACBusTV.setText("PM10: " + getPM10Category(pm10_avg_Walking) + ", " + (int)pm10_avg_Walking + " µg/m³");
-            pm25ACBusTV.setText("PM2.5: " + getPM25Category(pm25_avg_Walking) + ", " + (int)pm25_avg_Walking + " µg/m³");
+            pm10ACBusTV.setText("PM10: " + getPM10Category(pm10_avg_AC_Bus) + ", " + (int)pm10_avg_AC_Bus + " µg/m³");
+            pm25ACBusTV.setText("PM2.5: " + getPM25Category(pm25_avg_AC_Bus) + ", " + (int)pm25_avg_AC_Bus + " µg/m³");
             timeSpentACBusTV.setText("Time Spent: " + (int)time_spent_AC_Bus + " mins");
 
         }
@@ -265,8 +265,8 @@ public class AnalyticsFragment extends Fragment {
             pm25_avg_Non_AC_Bus = pm25_avg_Non_AC_Bus / count_Non_AC_Bus;
             time_spent_Non_AC_Bus = (count_Non_AC_Bus * 30)/60;
 
-            pm10BusTV.setText("PM10: " + getPM10Category(pm10_avg_Walking) + ", " + (int)pm10_avg_Walking + " µg/m³");
-            pm25BusTV.setText("PM2.5: " + getPM25Category(pm25_avg_Walking) + ", " + (int)pm25_avg_Walking + " µg/m³");
+            pm10BusTV.setText("PM10: " + getPM10Category(pm10_avg_Non_AC_Bus) + ", " + (int)pm10_avg_Non_AC_Bus + " µg/m³");
+            pm25BusTV.setText("PM2.5: " + getPM25Category(pm25_avg_Non_AC_Bus) + ", " + (int)pm25_avg_Non_AC_Bus + " µg/m³");
             timeSpentBusTV.setText("Time Spent: " + (int)time_spent_Non_AC_Bus + " mins");
 
         }
@@ -275,8 +275,8 @@ public class AnalyticsFragment extends Fragment {
             pm25_avg_2_3_Wheeler = pm25_avg_2_3_Wheeler / count_2_3_Wheeler;
             time_spent_2_3_Wheeler = (count_2_3_Wheeler * 30)/60;
 
-            pm10TwoThreeTV.setText("PM10: " + getPM10Category(pm10_avg_Walking) + ", " + (int)pm10_avg_Walking + " µg/m³");
-            pm25TwoThreeTV.setText("PM2.5: " + getPM25Category(pm25_avg_Walking) + ", " + (int)pm25_avg_Walking + " µg/m³");
+            pm10TwoThreeTV.setText("PM10: " + getPM10Category(pm10_avg_2_3_Wheeler) + ", " + (int)pm10_avg_2_3_Wheeler + " µg/m³");
+            pm25TwoThreeTV.setText("PM2.5: " + getPM25Category(pm25_avg_2_3_Wheeler) + ", " + (int)pm25_avg_2_3_Wheeler + " µg/m³");
             timeSpentTwoThreeTV.setText("Time Spent: " + (int)time_spent_2_3_Wheeler + " mins");
 
         }
@@ -294,14 +294,23 @@ public class AnalyticsFragment extends Fragment {
                 @Override
                 public String formatLabel(double value, boolean isValueX) {
                     if(isValueX) {
+                        String time = "am";
                         double hour = Math.floor(value/3600);
                         int minute = (int)((value - hour*3600)/60);
-                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute);
+                        if(hour > 12) {
+                            hour = hour - 12;
+                            time = "pm";
+                        } else {
+                            time = "am";
+                        }
+                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
                     }
                     return super.formatLabel(value, isValueX);
                 }
             });
             graph_pm25.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+/*            graph_pm25.getViewport().setScalableY(true);
+            graph_pm25.getViewport().setScrollableY(true);*/
 
 // set manual x bounds to have nice steps
            /* graph_pm25.getViewport().setMinX(d1.getTime());
@@ -316,9 +325,16 @@ public class AnalyticsFragment extends Fragment {
                 @Override
                 public String formatLabel(double value, boolean isValueX) {
                     if(isValueX) {
+                        String time = "am";
                         double hour = Math.floor(value/3600);
                         int minute = (int)((value - hour*3600)/60);
-                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute);
+                        if(hour > 12) {
+                            hour = hour - 12;
+                            time = "pm";
+                        } else {
+                            time = "am";
+                        }
+                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
                     }
                     return super.formatLabel(value, isValueX);
                 }
