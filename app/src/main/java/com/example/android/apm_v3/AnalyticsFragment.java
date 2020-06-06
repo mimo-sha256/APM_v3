@@ -208,7 +208,7 @@ public class AnalyticsFragment extends Fragment {
 
 
                             setValues();
-                            setColors(pm10_avg, pm25_avg);
+                            setColors(pm25_avg, pm10_avg);
 
                             createGraph(seriespm25,seriespm10);
                         }
@@ -295,8 +295,8 @@ public class AnalyticsFragment extends Fragment {
                 public String formatLabel(double value, boolean isValueX) {
                     if(isValueX) {
                         double hour = Math.floor(value/3600);
-                        double second = (value - hour*3600)/60;
-                        return super.formatLabel( hour, isValueX);
+                        int minute = (int)((value - hour*3600)/60);
+                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute);
                     }
                     return super.formatLabel(value, isValueX);
                 }
@@ -317,8 +317,8 @@ public class AnalyticsFragment extends Fragment {
                 public String formatLabel(double value, boolean isValueX) {
                     if(isValueX) {
                         double hour = Math.floor(value/3600);
-                        double second = (value - hour)/60;
-                        return super.formatLabel( hour, isValueX);
+                        int minute = (int)((value - hour*3600)/60);
+                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute);
                     }
                     return super.formatLabel(value, isValueX);
                 }

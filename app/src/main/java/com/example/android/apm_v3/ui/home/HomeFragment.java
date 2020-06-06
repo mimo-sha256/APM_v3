@@ -47,6 +47,8 @@ import com.polidea.rxandroidble2.RxBleDevice;
 import com.polidea.rxandroidble2.scan.ScanSettings;
 import com.tomerrosenfeld.customanalogclockview.CustomAnalogClock;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -99,7 +101,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        AQI = root.findViewById(R.id.AQI);
         pmCloud = root.findViewById(R.id.pmCloud);
         pm25Value = root.findViewById(R.id.pm25Value);
         pm10Value = root.findViewById(R.id.pm10Value);
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment {
         maskSpinner = root.findViewById(R.id.maskSpinner);
         modeOfTransportSpinner = root.findViewById(R.id.transportSpinner);
         categoryCardView = root.findViewById(R.id.categoryCardView);
+        AQI = categoryCardView.findViewById(R.id.AQI);
         context = root.getContext();
         rxBleClient = RxBleClient.create(context);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -185,6 +187,8 @@ public class HomeFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 mask = maskSpinner.getSelectedItem().toString();
                 switch (mask) {
+                    case "Select": exposure_reduction_percentage = 0;
+                    break;
                     case "No mask": exposure_reduction_percentage = 0;
                     break;
                     case "N95": exposure_reduction_percentage = 95;
