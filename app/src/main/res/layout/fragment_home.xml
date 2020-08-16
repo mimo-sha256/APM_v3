@@ -11,10 +11,10 @@
 
     <TextView
         android:id="@+id/pm10Label"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="108dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="105dp"
         android:gravity="center"
         android:text="PM10"
         android:textAlignment="center"
@@ -24,9 +24,9 @@
 
     <TextView
         android:id="@+id/pm10Unit"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="108dp"
+        android:layout_marginEnd="105dp"
         android:gravity="center"
         android:text="µg/m³ "
         android:textAlignment="center"
@@ -35,9 +35,9 @@
 
     <TextView
         android:id="@+id/pm10Value"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="108dp"
+        android:layout_marginEnd="105dp"
         android:gravity="center"
         android:text="--"
         android:textAlignment="center"
@@ -76,6 +76,8 @@
         android:id="@+id/analog_clock"
         android:layout_width="106dp"
         android:layout_height="105dp"
+        android:backgroundTint="#3F3382"
+        android:foregroundTint="#3F3382"
         app:default_watchface="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,10 +88,10 @@
 
     <TextView
         android:id="@+id/pm25Label"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="35dp"
         android:gravity="center"
         android:text="PM2.5"
         android:textAlignment="center"
@@ -99,9 +101,9 @@
 
     <TextView
         android:id="@+id/pm25Unit"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="24dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="105dp"
         android:gravity="center"
         android:text="µg/m³ "
         android:textAlignment="center"
@@ -110,9 +112,9 @@
 
     <TextView
         android:id="@+id/pm25Value"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="40dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="105dp"
         android:gravity="center"
         android:text="--"
         android:textAlignment="center"
@@ -136,6 +138,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:foregroundTint="#ECECEC"
         android:text="Current Exposure"
         android:textColor="#3F3382"
         android:textSize="20sp"
@@ -166,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:text="Mode of Transport:"
+        android:text="Means of Commute:"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/transportSpinner"
@@ -212,6 +215,20 @@
                 android:textSize="36sp" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/infoExposure"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/maskSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pm25Unit"
+        app:layout_constraintVertical_bias="0.53" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

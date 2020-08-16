@@ -150,7 +150,7 @@ public class AnalyticsFragment extends Fragment {
         }
 
         db.collection("apData")
-                .whereEqualTo("Date",currentDate)
+                .whereEqualTo("Date","2020-06-18")
                 .orderBy("Time")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -186,12 +186,12 @@ public class AnalyticsFragment extends Fragment {
                                 }
                                 else if(document.get("ModeOfTransport").toString().equals("Non-AC Bus")) {
                                     pm10_avg_Non_AC_Bus++;
-                                    pm10_avg_Non_AC_Bus += pm25;
+                                    pm25_avg_Non_AC_Bus += pm25;
                                     pm10_avg_Non_AC_Bus += pm10;
                                 }
                                 else if(document.get("ModeOfTransport").toString().equals("Two Wheeler/Three Wheeler")) {
                                     count_2_3_Wheeler++;
-                                    pm10_avg_2_3_Wheeler += pm25;
+                                    pm25_avg_2_3_Wheeler += pm25;
                                     pm10_avg_2_3_Wheeler += pm10;
                                 }
 
@@ -303,14 +303,17 @@ public class AnalyticsFragment extends Fragment {
                         } else {
                             time = "am";
                         }
-                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
+                        if((int)minute/10 != 0)
+                            return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
+                        else
+                            return super.formatLabel( hour, isValueX) + ":0" + String.valueOf(minute) + " " + time;
                     }
                     return super.formatLabel(value, isValueX);
                 }
             });
             graph_pm25.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
-/*            graph_pm25.getViewport().setScalableY(true);
-            graph_pm25.getViewport().setScrollableY(true);*/
+
+            //graph_pm25.getViewport().setScalable(true);
 
 // set manual x bounds to have nice steps
            /* graph_pm25.getViewport().setMinX(d1.getTime());
@@ -334,13 +337,17 @@ public class AnalyticsFragment extends Fragment {
                         } else {
                             time = "am";
                         }
-                        return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
+                        if((int)minute/10 != 0)
+                            return super.formatLabel( hour, isValueX) + ":" + String.valueOf(minute) + " " + time;
+                        else
+                            return super.formatLabel( hour, isValueX) + ":0" + String.valueOf(minute) + " " + time;
                     }
                     return super.formatLabel(value, isValueX);
                 }
             });
             graph_pm10.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
 
+            //graph_pm10.getViewport().setScalable(true);
 // set manual x bounds to have nice steps
             /*graph_pm10.getViewport().setMinX(d1.getTime());
             graph_pm10.getViewport().setMaxX(d3.getTime());

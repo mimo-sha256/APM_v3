@@ -89,6 +89,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="75dp"
                         android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
                         android:text="Health implication"
                         android:textAlignment="center"
                         android:textColor="#000000"
@@ -140,6 +142,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="75dp"
                         android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
                         android:text="Health implication"
                         android:textAlignment="center"
                         android:textColor="#000000"
@@ -225,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: Walking"
+                            android:text="Means of Commute: Walking"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 
@@ -277,7 +281,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: AC Car"
+                            android:text="Means of Commute: AC Car"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 
@@ -336,7 +340,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: Car"
+                            android:text="Means of Commute: Car"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 
@@ -388,7 +392,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: AC Bus"
+                            android:text="Means of Commute: AC Bus"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 
@@ -447,7 +451,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: Bus"
+                            android:text="Means of Commute: Bus"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 
@@ -499,7 +503,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:paddingTop="5dp"
-                            android:text="Mode of Transport: 2/3 Wheeler"
+                            android:text="Means of Commute:2/3 Wheeler"
                             android:textColor="#000000"
                             android:textSize="13sp" />
 

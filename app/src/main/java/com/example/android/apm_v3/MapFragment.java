@@ -95,7 +95,7 @@ public class MapFragment extends Fragment {
 
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 3000, null);
 
-                db.collection("apData")
+                /*db.collection("apData")
                         .whereEqualTo("Date",currentDate)
                         .orderBy("Time")
                         .get()
@@ -123,37 +123,181 @@ public class MapFragment extends Fragment {
                                     }
                                 }
                             }
-                        });
-
-                /*Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+                        });*/
+                Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.973706,77.698348),new LatLng(12.966868,77.702125)));
-                polyline1.setColor(0xff00cc00);
+                        .add(new LatLng(12.997505,77.682889),new LatLng(12.995553,77.684299)));
+                polyline1.setColor(0xff66cc00);
 
                 Polyline polyline2 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.966868,77.702125),new LatLng(12.963355,77.701824)));
+                        .add(new LatLng(12.995553,77.684299),new LatLng(12.993306,77.685991)));
                 polyline2.setColor(0xff66cc00);
 
                 Polyline polyline3 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.963355,77.701824),new LatLng(12.957228,77.701202)));
-                polyline3.setColor(0xffffff00);
+                        .add(new LatLng(12.993306,77.685991),new LatLng(12.990341,77.688197)));
+                polyline3.setColor(0xff66cc00);
 
                 Polyline polyline4 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.957228,77.701202),new LatLng(12.950676,77.699619)));
-                polyline4.setColor(0xffff9900);
+                        .add(new LatLng(12.990341,77.688197),new LatLng(12.986172,77.690777)));
+                polyline4.setColor(0xff66cc00);
 
                 Polyline polyline5 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.950676,77.699619),new LatLng(12.945782,77.698353)));
-                polyline5.setColor(0xffff0000);
+                        .add(new LatLng(12.986172,77.690777),new LatLng(12.984316,77.691885)));
+                polyline5.setColor(0xff66cc00);
 
                 Polyline polyline6 = googleMap.addPolyline(new PolylineOptions()
                         .clickable(false)
-                        .add(new LatLng(12.945782,77.698353),new LatLng(12.937919,77.693868)));
-                polyline6.setColor(0xffa52a2a);*/
+                        .add(new LatLng(12.984316,77.691885),new LatLng(12.982284,77.693207)));
+                polyline6.setColor(0xff66cc00);
+
+                Polyline polyline7 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.982284,77.693207),new LatLng(12.980538,77.694248)));
+                polyline7.setColor(0xff66cc00);
+
+                Polyline polyline8 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.980538,77.694248),new LatLng(12.979266,77.695002)));
+                polyline8.setColor(0xffffca0a);
+
+                Polyline polyline9 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.979266,77.695002),new LatLng(12.977714,77.695981)));
+                polyline9.setColor(0xffffca0a);
+
+                Polyline polyline10 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.977714,77.695981),new LatLng(12.975351,77.697397)));
+                polyline10.setColor(0xffffca0a);
+
+                Polyline polyline11 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.975351,77.697397),new LatLng(12.973117,77.698740)));
+                polyline11.setColor(0xffff9900);
+
+                Polyline polyline12 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.973117,77.698740),new LatLng(12.970838,77.700097)));
+                polyline12.setColor(0xffff9900);
+
+                Polyline polyline13 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.970838,77.700097),new LatLng(12.968872,77.701299)));
+                polyline13.setColor(0xffff0000);
+
+                Polyline polyline14 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.968872,77.701299),new LatLng(12.967366,77.702104)));
+                polyline14.setColor(0xffff0000);
+
+                Polyline polyline15 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.967366,77.702104),new LatLng(12.966467,77.702297)));
+                polyline15.setColor(0xffff0000);
+
+                Polyline polyline16 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.966467,77.702297),new LatLng(12.963675,77.701986)));
+                polyline16.setColor(0xffff0000);
+
+                Polyline polyline17 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.963675,77.701986),new LatLng(12.961668,77.701686)));
+                polyline17.setColor(0xffff0000);
+
+                Polyline polyline18 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.961668,77.701686),new LatLng(12.959065,77.701289)));
+                polyline18.setColor(0xffff0000);
+
+                Polyline polyline19 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.959065,77.701289),new LatLng(12.956754,77.701194)));
+                polyline19.setColor(0xffff0000);
+
+                Polyline polyline20 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.956754,77.701194),new LatLng(12.954404,77.700510)));
+                polyline20.setColor(0xffff0000);
+
+                Polyline polyline21 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.954404,77.700510),new LatLng(12.952991,77.700175)));
+                polyline21.setColor(0xffff0000);
+
+                Polyline polyline22 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.952991,77.700175),new LatLng(12.951893,77.699901)));
+                polyline22.setColor(0xffff0000);
+
+                Polyline polyline23 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.951893,77.699901),new LatLng(12.950497,77.699654)));
+                polyline23.setColor(0xffff0000);
+
+                Polyline polyline24 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.950497,77.699654),new LatLng(12.949049,77.699386)));
+                polyline24.setColor(0xffff0000);
+
+                Polyline polyline25 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.949049,77.699386),new LatLng(12.947494,77.698977)));
+                polyline25.setColor(0xffff0000);
+
+                Polyline polyline26 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.947494,77.698977),new LatLng(12.945727,77.698382)));
+                polyline26.setColor(0xffff0000);
+
+                Polyline polyline27 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.945727,77.698382),new LatLng(12.944042,77.697770)));
+                polyline27.setColor(0xffff0000);
+
+                Polyline polyline28 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.944042,77.697770),new LatLng(12.942630,77.697220)));
+                polyline28.setColor(0xffff0000);
+
+                Polyline polyline29 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.942630,77.697220),new LatLng(12.940664,77.696072)));
+                polyline29.setColor(0xffff0000);
+
+                Polyline polyline30 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.940664,77.696072),new LatLng(12.938835,77.694840)));
+                polyline30.setColor(0xffff0000);
+
+                Polyline polyline31 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.938835,77.694840),new LatLng(12.937340,77.693217)));
+                polyline31.setColor(0xffff0000);
+
+                Polyline polyline32 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.937340,77.693217),new LatLng(12.935907,77.691651)));
+                polyline32.setColor(0xffff0000);
+
+                Polyline polyline33 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.935907,77.691651),new LatLng(12.934035,77.689677)));
+                polyline33.setColor(0xffff0000);
+
+                Polyline polyline34 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.934035,77.689677),new LatLng(12.932697,77.688218)));
+                polyline34.setColor(0xffff9900);
+
+                Polyline polyline35 = googleMap.addPolyline(new PolylineOptions()
+                        .clickable(false)
+                        .add(new LatLng(12.932697,77.688218),new LatLng(12.931013,77.686340)));
+                polyline35.setColor(0xffff9900);
             }
         });
 

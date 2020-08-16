@@ -18,9 +18,9 @@
         <item>N95 mask</item>
         <item>Surgical mask</item>
         <item>FFP1 mask</item>
-        <item>Activated carbon mask</item>
-        <item>Cloth mask</item>
-        <item>Sponge mask</item>
+        <item>FFP2 mask</item>
+        <item>FFP3 mask</item>
+        <item>Cotton Handkerchief</item>
     </string-array>
     <string-array name="transportArray">
         <item>Select</item>

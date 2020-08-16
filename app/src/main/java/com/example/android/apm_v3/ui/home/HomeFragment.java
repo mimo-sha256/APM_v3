@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment {
     static FirebaseFirestore db;
     static String mask;
     static int exposure_reduction_percentage = 0;
+    static TextView infoExposure;
     static String modeOfTransport;
     SimpleDateFormat dateFormat;
     static NotificationCompat.Builder notificationBuilder;
@@ -107,6 +108,7 @@ public class HomeFragment extends Fragment {
         deviceList = root.findViewById(R.id.DeviceList);
         scanButton = root.findViewById(R.id.ScanButton);
         maskSpinner = root.findViewById(R.id.maskSpinner);
+        infoExposure = root.findViewById(R.id.infoExposure);
         modeOfTransportSpinner = root.findViewById(R.id.transportSpinner);
         categoryCardView = root.findViewById(R.id.categoryCardView);
         AQI = categoryCardView.findViewById(R.id.AQI);
@@ -176,6 +178,7 @@ public class HomeFragment extends Fragment {
         customAnalogClock.setScale(0.5f);
 
 
+
         String[] maskTypes = {"No mask", "N95"};
 
         maskAdapter = new ArrayAdapter<String>(context, R.layout.spinner_mask, R.id.maskSpinner, maskTypes);
@@ -188,20 +191,28 @@ public class HomeFragment extends Fragment {
                 mask = maskSpinner.getSelectedItem().toString();
                 switch (mask) {
                     case "Select": exposure_reduction_percentage = 0;
+                        infoExposure.setText("");
                     break;
                     case "No mask": exposure_reduction_percentage = 0;
+                        infoExposure.setText("");
                     break;
                     case "N95 mask": exposure_reduction_percentage = 95;
+                        infoExposure.setText("Exposure reduced to 95% of current exposure.");
                     break;
                     case "Surgical mask": exposure_reduction_percentage = 80;
+                        infoExposure.setText("Exposure reduced to 80% of current exposure.");
                     break;
-                    case "FFFP1 mask": exposure_reduction_percentage = 80;
+                    case "FFP1 mask": exposure_reduction_percentage = 80;
+                        infoExposure.setText("Exposure reduced to 80% of current exposure.");
                     break;
-                    case "Activated carbon mask": exposure_reduction_percentage = 50;
+                    case "FFP2 mask": exposure_reduction_percentage = 94;
+                        infoExposure.setText("Exposure reduced to 94% of current exposure.");
                     break;
-                    case "Cloth mask": exposure_reduction_percentage = 50;
+                    case "FFP3 mask": exposure_reduction_percentage = 99;
+                        infoExposure.setText("Exposure reduced to 99% of current exposure.");
                     break;
-                    case "Sponge mask": exposure_reduction_percentage = 5;
+                    case "Cotton Handkerchief": exposure_reduction_percentage = 28;
+                        infoExposure.setText("Exposure reduced to 28% of current exposure.");
                     break;
                 }
             }
@@ -318,7 +329,7 @@ public class HomeFragment extends Fragment {
             pm25Category = 1;
         }
         else if(pm25>61 && pm25<=90) {
-            pm25Value.setTextColor(Color.parseColor("#ffff00"));
+            pm25Value.setTextColor(Color.parseColor("#ffca0a"));
             pm25Category = 2;
         }
         else if(pm25>91 && pm25<=120) {
@@ -344,7 +355,7 @@ public class HomeFragment extends Fragment {
             pm10Category = 1;
         }
         else if(pm10>101 && pm10<=250) {
-            pm10Value.setTextColor(Color.parseColor("#ffff00"));
+            pm10Value.setTextColor(Color.parseColor("#ffca0a"));
             pm10Category = 2;
         }
         else if(pm10>251 && pm10<=350) {
@@ -413,7 +424,7 @@ public class HomeFragment extends Fragment {
             notificationBuilder.setContentTitle("Severe");
             notificationBuilder.setColor(0xfff9e8e8);
             notificationBuilder.setSmallIcon(R.drawable.ic_severe_cloud);
-            pmCloud.setBackgroundResource(R.drawable.ic_severe_cloud);
+            pmCloud.setImageResource(R.drawable.ic_severe_cloud);
         }
         notificationBuilder.setContentText("PM2.5 : " + pm25 + " µg/m³" + " | PM10 : " + pm10 + " µg/m³");
         notificationManager.notify(notificaionId, notificationBuilder.build());
